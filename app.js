@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
-const port = 80;
+// const port = 80;
 const middleware = require('./middleware')
 const path = require('path')
 const bodyParser = require("body-parser")
 const mongoose = require("./database");
 const session = require("express-session");
 
-const server = app.listen(port, () => console.log("Server listening on port " + port));
+const server = app.listen(process.env.port, process.env.IP, function(){
+    console.log("The Server Has Started!");
+ });
 const io = require("socket.io")(server, { pingTimeout: 60000 });
 
 app.set("view engine", "pug");
